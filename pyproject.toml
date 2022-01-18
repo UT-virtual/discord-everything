@@ -1,0 +1,61 @@
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+line_length = 120
+force_single_line = true
+import_heading_stdlib      = "Standard Library"
+import_heading_thirdparty  = "Third Party Library"
+import_heading_firstparty  = "First Party Library"
+import_heading_localfolder = "Local Library"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+
+[[tool.mypy.overrides]]
+module = "discord"
+ignore_errors = true
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = [
+    "-rxX",
+    "--capture=no",
+    "-pno:logging",
+    # "--cov",
+    # "--cov-append",
+    # "--cov-report=term-missing",
+]
+testpaths = "test"
+python_files = [
+    "tests.py",
+    "test_*.py",
+    "*_tests.py",
+]
+
+[tool.poetry]
+name = "discord-everything"
+version = "0.1.0"
+description = ""
+authors = ["pollenjp <polleninjp@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+py-cord = {git = "https://github.com/Pycord-Development/pycord.git", extras = ["voice"]}
+python-dotenv = "^0.19.2"
+
+[tool.poetry.dev-dependencies]
+black = "^21.12b0"
+flake8 = "^4.0.1"
+isort = "^5.10.1"
+mypy = "^0.931"
+nox = "^2022.1.7"
+pytest = "^6.2.5"
+autoflake8 = "^0.2.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
