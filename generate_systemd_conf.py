@@ -16,6 +16,8 @@ def main():
     target_systemd_conf_path.parent.mkdir(parents=True, exist_ok=True)
 
     config = configparser.ConfigParser()
+    config.optionxform = str  # case sensitive
+
     config["Unit"] = {}
     config["Service"] = {}
     config["Install"] = {}
